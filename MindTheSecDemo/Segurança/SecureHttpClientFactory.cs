@@ -3,7 +3,7 @@ using System.Net.Http;
 using Flurl.Http.Configuration;
 using SecureHttpClient;
 
-namespace MindTheSecDemo.Security
+namespace MindTheSecDemo.Segurança
 {
     public class SecureHttpClientFactory : DefaultHttpClientFactory
     {

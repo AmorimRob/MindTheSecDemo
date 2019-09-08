@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MindTheSecDemo.ViewModels;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace MindTheSecDemo.Views
 {
@@ -10,8 +7,6 @@ namespace MindTheSecDemo.Views
         public MainPage()
         {
             InitializeComponent();
-
-            BindingContext = new MainPageViewModel();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Net;
 using Foundation;
 using UIKit;
 
@@ -22,10 +22,17 @@ namespace MindTheSecDemo.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            ServicePointManager
+            .ServerCertificateValidationCallback +=
+            (sender, cert, chain, sslPolicyErrors) => false;
+
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            var xfApplication = new App(new iOSInitializer());
+            LoadApplication(xfApplication);
 
             return base.FinishedLaunching(app, options);
         }
+
+      
     }
 }

@@ -10,12 +10,13 @@ namespace MindTheSecDemo.Services
 {
     public class PokemonService : IPokemonService
     {
-        public PokemonService() { }
-
         public async Task<IEnumerable<Pokemon>> Todos()
         {
             try
             {
+                //var httpClient = new HttpClient();
+                //var response2 = await httpClient.GetStringAsync("https://pokeapi.co/api/v2/pokemon");
+
                 var response = await ("https://pokeapi.co/" + "api/v2/pokemon")
                                 .GetStringAsync();
 

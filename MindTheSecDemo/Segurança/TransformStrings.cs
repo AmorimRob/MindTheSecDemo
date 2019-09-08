@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace MindTheSecDemo.Infraestrutura
+namespace MindTheSecDemo.Segurança
 {
     public static class TransformStrings
     {

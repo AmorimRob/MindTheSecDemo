@@ -1,21 +1,34 @@
 ﻿using Flurl.Http;
 using Flurl.Http.Configuration;
-using MindTheSecDemo.Security;
+using MindTheSecDemo.Segurança;
+using MindTheSecDemo.ViewModels;
 using MindTheSecDemo.Views;
 using Newtonsoft.Json;
+using Prism;
+using Prism.Ioc;
+using SecureHttpClient;
 using Xamarin.Forms;
 
 namespace MindTheSecDemo
 {
-    public partial class App : Application
+    public partial class App 
     {
-        public App()
+        public App() : this(null)
+        {
+        }
+
+        public App(IPlatformInitializer initializer) : base(initializer)
+        {
+        }
+
+
+        protected override async void OnInitialized()
         {
             InitializeComponent();
 
             FlurlHttp.Configure(c =>
             {
-                c.HttpClientFactory = new SecureHttpClientFactory(new SecureHttpClient.SecureHttpClientHandler());
+                c.HttpClientFactory = Container.Resolve<SecureHttpClientFactory>();
                 var jsonSettings = new JsonSerializerSettings
                 {
                     NullValueHandling = NullValueHandling.Ignore,
@@ -23,22 +36,17 @@ namespace MindTheSecDemo
                 c.JsonSerializer = new NewtonsoftJsonSerializer(jsonSettings);
             });
 
-            MainPage = new MainPage();
+            await NavigationService.NavigateAsync($"{nameof(PokemonsPage)}");
         }
 
-        protected override void OnStart()
-        {
-           
-        }
 
-        protected override void OnSleep()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            // Handle when your app sleeps
-        }
+            containerRegistry.RegisterInstance(new SecureHttpClientHandler());
 
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<PokemonsPage, PokemonsPageViewModel>();
         }
     }
 }

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="MindTheSecDemo.Views.SecureStoragePage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label FontAttributes="Bold"
+                   FontSize="Large"
+                   Text="SECURE STORAGE"
+                   HorizontalOptions="CenterAndExpand" />
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Entry WidthRequest="100"
+                       FontSize="Large"
+                       Text="{Binding TextoParaSalvarNoSecureStorage, Mode=TwoWay}" />
+
+                <Label WidthRequest="100"
+                       FontSize="Large"
+                       Text="{Binding TextoRecuperadoDoSecureStorage}" />
+            </StackLayout>
+
+            <StackLayout Margin="0,30,0,0"
+                         Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <Button WidthRequest="100"
+                        HeightRequest="50"
+                        BackgroundColor="Navy"
+                        Command="{Binding SalvarSecureStorageCommand}"
+                        CornerRadius="25"
+                        FontSize="Micro"
+                        Text="Salvar"
+                        TextColor="White" />
+
+                <Button WidthRequest="100"
+                        HeightRequest="50"
+                        BackgroundColor="Navy"
+                        Command="{Binding ObterSecureStorageCommand}"
+                        CornerRadius="25"
+                        FontSize="Micro"
+                        Text="Obter"
+                        TextColor="White" />
+            </StackLayout>
+
+            <Button WidthRequest="200"
+                    HeightRequest="50"
+                    BackgroundColor="Navy"
+                    CornerRadius="25"
+                    Text="Ofuscação de texto"
+                    TextColor="White"
+                    Command="{Binding NavegarParaOfuscacaoDeTextoCommand}"
+                    VerticalOptions="EndAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

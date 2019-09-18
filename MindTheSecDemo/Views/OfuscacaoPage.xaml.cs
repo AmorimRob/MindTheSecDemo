@@ -2,9 +2,9 @@
 
 namespace MindTheSecDemo.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class OfuscacaoPage : ContentPage
     {
-        public MainPage()
+        public OfuscacaoPage()
         {
             InitializeComponent();
         }

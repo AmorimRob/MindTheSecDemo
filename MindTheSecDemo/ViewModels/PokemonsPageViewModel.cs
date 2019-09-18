@@ -8,7 +8,7 @@ using Prism.Navigation;
 
 namespace MindTheSecDemo.ViewModels
 {
-    public class PokemonsPageViewModel : BindableBase, INavigatedAware
+    public class PokemonsPageViewModel : BindableBase, INavigatingAware
     {
         public readonly IPokemonService _pokemonService;
 
@@ -26,11 +26,7 @@ namespace MindTheSecDemo.ViewModels
             Pokemons.AddRange(await _pokemonService.Todos());
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
-        public async void OnNavigatedTo(INavigationParameters parameters)
+        public async void OnNavigatingTo(INavigationParameters parameters)
         {
             await ObterPokemons();
         }

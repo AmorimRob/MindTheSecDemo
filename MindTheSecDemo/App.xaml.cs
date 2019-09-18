@@ -36,7 +36,7 @@ namespace MindTheSecDemo
                 c.JsonSerializer = new NewtonsoftJsonSerializer(jsonSettings);
             });
 
-            await NavigationService.NavigateAsync($"{nameof(PokemonsPage)}");
+            await NavigationService.NavigateAsync($"{nameof(SecureStoragePage)}");
         }
 
 
@@ -45,7 +45,8 @@ namespace MindTheSecDemo
             containerRegistry.RegisterInstance(new SecureHttpClientHandler());
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<OfuscacaoPage, OfuscacaoPageViewModel>();
+            containerRegistry.RegisterForNavigation<SecureStoragePage, SecureStoragePageViewModel>();
             containerRegistry.RegisterForNavigation<PokemonsPage, PokemonsPageViewModel>();
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Flurl.Http;
 using MindTheSecDemo.Models;
@@ -15,7 +16,7 @@ namespace MindTheSecDemo.Services
             try
             {
                 //var httpClient = new HttpClient();
-                //var response2 = await httpClient.GetStringAsync("https://pokeapi.co/api/v2/pokemon");
+                //var response = await httpClient.GetStringAsync("https://pokeapi.co/api/v2/pokemon");
 
                 var response = await ("https://pokeapi.co/" + "api/v2/pokemon")
                                 .GetStringAsync();

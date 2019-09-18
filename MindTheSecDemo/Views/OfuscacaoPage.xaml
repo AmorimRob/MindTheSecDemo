@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="MindTheSecDemo.Views.OfuscacaoPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label FontAttributes="Bold"
+                   FontSize="Large"
+                   Text="OFUSCAÇÃO DE STRING"
+                   HorizontalOptions="CenterAndExpand"/>
+            <StackLayout VerticalOptions="CenterAndExpand">
+                <Entry WidthRequest="200"
+                       FontSize="Large"
+                       Text="{Binding Texto}"
+                       Platform="Texto para ofuscar..."/>
+
+                <Entry WidthRequest="200"
+                       FontSize="Large"
+                       Text="{Binding TextoOfuscado, Mode=TwoWay}" />
+                <Button WidthRequest="100"
+                        HeightRequest="50"
+                        BackgroundColor="Navy"
+                        Command="{Binding OfuscarTextoCommand}"
+                        CornerRadius="25"
+                        Text="Ofuscar Texto"
+                        TextColor="White" />
+
+                <Entry WidthRequest="200"
+                       Margin="0, 30, 0, 0"
+                       FontSize="Large"
+                       Text="{Binding TextoTransformado}" />
+                <Button WidthRequest="100"
+                        HeightRequest="50"
+                        BackgroundColor="Navy"
+                        Command="{Binding ObterTextoCommand}"
+                        CornerRadius="25"
+                        Text="Obter Texto"
+                        TextColor="White" />
+            </StackLayout>
+
+            <Button WidthRequest="200"
+                    HeightRequest="50"
+                    BackgroundColor="Navy"
+                    Command="{Binding NavegarPokemonsPageCommand}"
+                    CornerRadius="25"
+                    Text="Pokemons"
+                    TextColor="White"
+                    VerticalOptions="EndAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

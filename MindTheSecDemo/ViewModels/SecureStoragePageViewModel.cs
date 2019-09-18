@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MindTheSecDemo.Segurança;
 using MindTheSecDemo.Views;
 using Prism.Mvvm;
 using Prism.Navigation;
@@ -10,35 +9,13 @@ using Xamarin.Forms;
 
 namespace MindTheSecDemo.ViewModels
 {
-    public class MainPageViewModel : BindableBase, INavigatedAware
+    public class SecureStoragePageViewModel :  BindableBase, INavigatingAware
     {
-        public readonly INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
 
-        public string Texto { get; set; }
-
-        private string _textoOfuscado;
-        public string TextoOfuscado
-        {
-            set 
-            { 
-                _textoOfuscado = value; 
-                RaisePropertyChanged(nameof(TextoOfuscado)); 
-            }
-
-            get { return _textoOfuscado; }
-        }
-
-        private string _textoTransformado;
-        public string TextoTransformado
-        {
-            set
-            {
-                _textoTransformado = value;
-                RaisePropertyChanged(nameof(TextoTransformado));
-            }
-
-            get { return _textoTransformado; }
-        }
+        public ICommand NavegarParaOfuscacaoDeTextoCommand { get; }
+        public ICommand SalvarSecureStorageCommand { get; set; }
+        public ICommand ObterSecureStorageCommand { get; set; }
 
         private string _textoParaSalvarNoSecureStorage;
         public string TextoParaSalvarNoSecureStorage
@@ -64,28 +41,18 @@ namespace MindTheSecDemo.ViewModels
             get { return _textoRecuperadoDoSecureStorage; }
         }
 
-        public ICommand OfuscarTextoCommand { get; set; }
-        public ICommand ObterTextoCommand { get; set; }
-        public ICommand NavegarPokemonsPageCommand { get; set; }
-        public ICommand SalvarSecureStorageCommand { get; set; }
-        public ICommand ObterSecureStorageCommand { get; set; }
-
-        public MainPageViewModel(INavigationService navigationService)
+        public SecureStoragePageViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
 
-            //OFUSCAÇÃO DE STRING
-            OfuscarTextoCommand = new Command(() => TextoOfuscado = TransformStrings.Transform(Texto));
-
-            ObterTextoCommand = new Command(() => TextoTransformado = TransformStrings.Decode(TextoOfuscado));
+            NavegarParaOfuscacaoDeTextoCommand = new Command(async () 
+                => await _navigationService.NavigateAsync(nameof(OfuscacaoPage)));
 
             //SECURE STORAGE
             SalvarSecureStorageCommand = new Command(async () => await SalvarInformacoesSeguras());
 
             ObterSecureStorageCommand = new Command(async () => await ObterInformacoesSeguras());
 
-            //NAVEGAR
-            NavegarPokemonsPageCommand = new Command(() => _navigationService.NavigateAsync($"{nameof(PokemonsPage)}"));
         }
 
         public async Task SalvarInformacoesSeguras()
@@ -106,15 +73,13 @@ namespace MindTheSecDemo.ViewModels
             {
                 TextoRecuperadoDoSecureStorage = await SecureStorage.GetAsync("token");
             }
-            catch (Exception)
-            { }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
-        public async void OnNavigatedTo(INavigationParameters parameters)
+        public void OnNavigatingTo(INavigationParameters parameters)
         {
         }
     }

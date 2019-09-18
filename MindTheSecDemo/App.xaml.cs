@@ -26,15 +26,15 @@ namespace MindTheSecDemo
         {
             InitializeComponent();
 
-            FlurlHttp.Configure(c =>
-            {
-                c.HttpClientFactory = Container.Resolve<SecureHttpClientFactory>();
-                var jsonSettings = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                };
-                c.JsonSerializer = new NewtonsoftJsonSerializer(jsonSettings);
-            });
+            //FlurlHttp.Configure(c =>
+            //{
+            //    c.HttpClientFactory = Container.Resolve<SecureHttpClientFactory>();
+            //    var jsonSettings = new JsonSerializerSettings
+            //    {
+            //        NullValueHandling = NullValueHandling.Ignore,
+            //    };
+            //    c.JsonSerializer = new NewtonsoftJsonSerializer(jsonSettings);
+            //});
 
             await NavigationService.NavigateAsync($"{nameof(SecureStoragePage)}");
         }

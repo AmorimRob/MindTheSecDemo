@@ -15,11 +15,11 @@ namespace MindTheSecDemo.Services
         {
             try
             {
-                //var httpClient = new HttpClient();
-                //var response = await httpClient.GetStringAsync("https://pokeapi.co/api/v2/pokemon");
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetStringAsync("https://pokeapi.co/api/v2/pokemon");
 
-                var response = await ("https://pokeapi.co/" + "api/v2/pokemon")
-                                .GetStringAsync();
+                //var response = await ("https://pokeapi.co/" + "api/v2/pokemon")
+                                //.GetStringAsync();
 
                 var result = JsonConvert.DeserializeObject<PokemonServiceResponse>(response);
 

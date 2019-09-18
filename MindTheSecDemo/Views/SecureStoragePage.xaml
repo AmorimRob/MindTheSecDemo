@@ -26,7 +26,6 @@
                         BackgroundColor="Navy"
                         Command="{Binding SalvarSecureStorageCommand}"
                         CornerRadius="25"
-                        FontSize="Micro"
                         Text="Salvar"
                         TextColor="White" />
 
@@ -35,7 +34,6 @@
                         BackgroundColor="Navy"
                         Command="{Binding ObterSecureStorageCommand}"
                         CornerRadius="25"
-                        FontSize="Micro"
                         Text="Obter"
                         TextColor="White" />
             </StackLayout>
